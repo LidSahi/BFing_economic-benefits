@@ -50,10 +50,11 @@ set.seed(21032022) #seed of random number generator, which is useful for
 # 02.1 Population characteristics
 # Initial Age 
 n_i           <- 100000             # number of individuals
-v_age0        <- sample  (x=0,   
-                          prob      =1, 
-                          size      =n_i, 
-                          replace   =TRUE) 
+v_age0        <- 0
+# v_age0        <- sample  (x=0,   
+#                           prob      =1, 
+#                           size      =n_i, 
+#                           replace   =TRUE) 
 n_age_max     <- 65                 # maximum age of follow up
 
 p_female      <- 0.501              # proportion population who are female-2002
@@ -81,25 +82,26 @@ r_5           <- 0.05    # discount rate 5%
 ## Escenario basal lactancia de acuerdo a ENNVIH 2002 
 prob_lacta    <- 0.914   # Probabilidad de lactar
 
-Nlacta=c()
+# Nlacta=c()
+# 
+# for (ind in 1:n_i)
+#   
+# {
+#   lacta=0
+#   
+#   if (n_i[ind]==1) {
+#     
+#     lacta=rbinom(1,1,prob_lacta)
+#     
+#   } else  {
+#     lacta<-0
+#   }
+#   
+#   Nlacta=c(Nlacta, lacta) 
+#   #Nlacta=Nlacta
+# }
 
-for (ind in 1:n_i)
-  
-{
-  lacta=0
-  
-  if (n_i[ind]==1) {
-    
-    lacta=rbinom(1,1,prob_lacta)
-    
-  } else  {
-    lacta<-0
-  }
-  
-  Nlacta=c(Nlacta, lacta) 
-  #Nlacta=Nlacta
-}
-
+Nlacta <- rbinom(n = n_i, size = 1, prob_lacta)
 
 # probabilidad de LM cada mes - LM predominante - AMBOS SEXOS*
 prob_lacta0       <- 0.085   # Probabilidad de lactar 0 meses
